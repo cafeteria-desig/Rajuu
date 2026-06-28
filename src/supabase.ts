@@ -160,9 +160,8 @@ let forceOfflineMode = false;
 
 export function isOfflineMode(): boolean {
   if (forceOfflineMode) return true;
-  const meta = import.meta as any;
-  const url = meta.env.VITE_SUPABASE_URL;
-  const key = meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = import.meta.env.VITE_SUPABASE_URL;
+  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key || url.includes("placeholder") || url.includes("your-supabase-project") || url.includes("your-placeholder-project")) {
     return true;
   }
@@ -247,8 +246,7 @@ function handleSupabaseError(error: any, operationName: string) {
   }
 
   console.error(`Supabase error during ${operationName}:`, error);
-  const meta = import.meta as any;
-  if (!meta.env.VITE_SUPABASE_URL || meta.env.VITE_SUPABASE_URL.includes("placeholder")) {
+  if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL.includes("placeholder")) {
     console.warn("Supabase configuration is not active. Using fully functioning Offline Storage fallback.");
   }
 }
