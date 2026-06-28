@@ -259,9 +259,12 @@ CRITICAL: Return ONLY valid, raw JSON. Do not wrap in markdown code blocks.`;
     const text = response.text || "{}";
     const result = JSON.parse(text.trim());
     res.json(result);
+  } catch (error: any) {
+    console.error("Error in /api/get-motivation:", error);
+    const idx = Math.floor(Math.random() * FALLBACK_QUOTES.length);
+    res.json(FALLBACK_QUOTES[idx]);
   }
 });
-
 // Serve frontend assets
 async function startServer() {
   if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
