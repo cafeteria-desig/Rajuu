@@ -1,8 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Safe lazy/fallback initialization to prevent startup crashes when keys aren't set yet
-const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || "https://your-placeholder-project.supabase.co";
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder";
+const supabaseUrl = 
+  (typeof process !== "undefined" && process.env?.VITE_SUPABASE_URL) || 
+  (typeof window !== "undefined" ? (import.meta as any).env.VITE_SUPABASE_URL : undefined) || 
+  "https://your-placeholder-project.supabase.co";
+
+const supabaseAnonKey = 
+  (typeof process !== "undefined" && process.env?.VITE_SUPABASE_ANON_KEY) || 
+  (typeof window !== "undefined" ? (import.meta as any).env.VITE_SUPABASE_ANON_KEY : undefined) || 
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
