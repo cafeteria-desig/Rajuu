@@ -1,0 +1,6 @@
+{
+  "name": "MindMate AI - Mental Wellness Companion",
+  "description": "An accessible, stigma-free mental wellness platform that provides daily mental health support, emotional tracking, AI conversations, journaling, and personalized self-care recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
